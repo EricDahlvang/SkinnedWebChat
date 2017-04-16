@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASP.NET Bot Framework WebChat Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">                     
+                @Html.ActionLink("iframed", "iFramed", "WebChat", new { area = "Bot" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Themed", "Index", "WebChat", new { area = "Bot" }, new { @class = "navbar-brand" })
+            </div>    
+            @if (!Request.Url.AbsoluteUri.ToLower().Contains("iframe"))
+            {
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Themes <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" data-theme="default" class="theme-link">Default</a></li>                           
+                                <li><a href="#" data-theme="theme2" class="theme-link">Theme 2</a></li>
+                                <li><a href="#" data-theme="theme3" class="theme-link">Theme 3</a></li>                               
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()        
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/botchat")
+    @RenderSection("scripts", required: false)
+    
+</body>
+</html>

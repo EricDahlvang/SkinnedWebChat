@@ -1,0 +1,43 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+.navbar>.container>.navbar-header>a{
+  margin-left:50px;
+}
+
+.center-iframe{
+    display:block;
+    margin: 0 auto;
+    min-height:400px; 
+    margin-top:60px;
+}   
+
+.wc-chatview-panel{
+    margin-top: 60px;
+    max-height: 400px;
+    max-width: 300px;
+   
+    display: block;
+    margin: 0 auto;
+    min-height: 400px;
+    margin-top: 110px;
+
+    border-top: 2px solid LightGrey;
+    border-left: 2px solid grey; 
+    border-right: 2px solid LightGrey;
+}
+

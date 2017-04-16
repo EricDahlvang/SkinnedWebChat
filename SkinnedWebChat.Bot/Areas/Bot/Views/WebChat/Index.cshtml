@@ -1,0 +1,31 @@
+﻿@model SkinnedWebChat.Bot.Areas.Bot.Models.WebChatModel
+@{
+    ViewBag.Title = "Skinned Chat Bot";
+}
+
+    <div id="bot" style="max-width:300px;margin-top:80px;" />
+
+@section scripts {
+    <script>
+
+        var botConnection = new BotChat.DirectLine({
+            secret: '@Model.Token',
+            token: '@Model.Token'//,domain: params['domain']
+        });
+
+          BotChat.App({
+            directLine: { secret: '@Model.Token' },
+            user: { id: "UserId", name: "Unknown" },
+            botConnection: botConnection,
+            bot: { id: '@System.Configuration.ConfigurationManager.AppSettings["BotId"]' },
+            resize: 'detect'
+          }, document.getElementById("bot"));
+
+        var act = botConnection.activity$;
+        act.filter(activity => activity.type == "event" && activity.name == "changetheme")
+           .subscribe(activity => {                    
+               changeTheme(activity.value);               
+           });
+    </script>
+}
+   

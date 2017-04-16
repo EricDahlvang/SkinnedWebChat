@@ -1,0 +1,10 @@
+﻿@model SkinnedWebChat.Bot.Areas.Bot.Models.WebChatModel
+@{
+    ViewBag.Title = "iFramed Chat Bot";
+}
+
+<iframe class="center-iframe" 
+        src='https://webchat.botframework.com/embed/@System.Configuration.ConfigurationManager.AppSettings["BotId"]?t=@Model.Token'></iframe>
+
+
+   
