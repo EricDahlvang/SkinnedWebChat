@@ -42,13 +42,21 @@ namespace SkinnedWebChat.Bot
                     else if (lowerText.Contains("theme") || lowerText.Contains("default"))
                     {
                         // return our reply to the direct channel
-                        if (lowerText.Contains("theme 1"))
+                        if (lowerText.Contains("theme 1") || lowerText.Contains("theme1"))
                             lowerText = "default";
 
-                        reply = activity.CreateReply();
-                        reply.Type = ActivityTypes.Event;
-                        reply.Name = "changetheme";
-                        reply.Value = lowerText.Replace(" ","") ;
+                        lowerText = lowerText.Replace(" ", "");
+                        if (lowerText != "default" && lowerText != "theme2" && lowerText != "theme3")
+                        {
+                            reply = activity.CreateReply($"You sent {activity.Text}. " + YouCanAskMeMessage);
+                        }
+                        else
+                        {
+                            reply = activity.CreateReply();
+                            reply.Type = ActivityTypes.Event;
+                            reply.Name = "changetheme";
+                            reply.Value = lowerText;
+                        }
                     }
                 }
                 else
@@ -80,8 +88,8 @@ namespace SkinnedWebChat.Bot
                 // Use Activity.MembersAdded and Activity.MembersRemoved and Activity.Action for info
                 // Not available in all channels
                 IConversationUpdateActivity conversationupdate = message;
-               
-                if (conversationupdate.MembersAdded.Any() && (message.MembersAdded.Any(o => o.Id != ConfigurationManager.AppSettings["BotId"])))
+
+                if (conversationupdate.MembersAdded.Any() && message.MembersAdded.Any(o => o.Id == "UserId")) // != ConfigurationManager.AppSettings["BotId"])))
                 {
                     ConnectorClient connector = new ConnectorClient(new System.Uri(message.ServiceUrl));
                     Activity reply = message.CreateReply("Welcome.  I'm a sample Themed Bot. " + YouCanAskMeMessage );

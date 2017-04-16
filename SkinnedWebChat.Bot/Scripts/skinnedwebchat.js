@@ -12,6 +12,9 @@ var themesstyles = {};
 var botthemestyles = {};
 $(function () {
     themesstyles = $('<link href="' + themes['default'] + '" rel="stylesheet" />');
+    if (themesstyles == undefined)
+        themesstyles = $('<link rel="stylesheet" href="/css/chat.css">');
+
     botthemestyles = $('<link href="' + botthemes['default'] + '" rel="stylesheet" />');
     themesstyles.appendTo('head');
     botthemestyles.appendTo('head');
@@ -21,6 +24,7 @@ $(function () {
 });
 
 function changeTheme(newTheme) {
+
     var themeurl = themes[newTheme];
     var botthemeurl = botthemes[newTheme];
 
